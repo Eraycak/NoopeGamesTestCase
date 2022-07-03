@@ -7,8 +7,10 @@ public class MoneyCollector : MonoBehaviour
 {
     [Header("Ref")]
     public Transform ItemHolderTransform;
-    private int NumOfItemsHolding = 0;
+    public int NumOfItemsHolding = 0;
+    public int MaxNumOfItemsHolding = 5;
     private float distanceBetweenMoneyObjectsOnHolder = -0.015f;
+    public List<GameObject> moneyObjectsList = new List<GameObject>();
 
     // Start is called before the first frame update
     void Start()
@@ -16,15 +18,31 @@ public class MoneyCollector : MonoBehaviour
         
     }
 
-    public void AddNewItem(Transform itemToAdd)
+    public void AddNewItem(GameObject itemToAdd)
     {
-        itemToAdd.DOJump(ItemHolderTransform.position + new Vector3(distanceBetweenMoneyObjectsOnHolder * NumOfItemsHolding, 0, 0), 1.5f, 1, 0.5f).OnComplete(
+        moneyObjectsList.Add(itemToAdd);
+        itemToAdd.transform.DOJump(ItemHolderTransform.position + new Vector3(distanceBetweenMoneyObjectsOnHolder * NumOfItemsHolding, 0, 0), 1.5f, 1, 0.5f).OnComplete(
             () =>
             {
-                itemToAdd.SetParent(ItemHolderTransform, true);
-                itemToAdd.localPosition = new Vector3(distanceBetweenMoneyObjectsOnHolder * NumOfItemsHolding, 0, -0.0125f);
-                itemToAdd.localRotation = Quaternion.Euler(180f, 90f, 90f);
+                itemToAdd.transform.SetParent(ItemHolderTransform, true);
+                itemToAdd.transform.localPosition = new Vector3(distanceBetweenMoneyObjectsOnHolder * NumOfItemsHolding, 0, -0.0125f);
+                itemToAdd.transform.localRotation = Quaternion.Euler(180f, 90f, 90f);
                 NumOfItemsHolding++;
+            }
+        );
+    }
+    public void RemoveItem(GameObject purchasableArea)
+    {
+        GameObject itemToRemove = moneyObjectsList[moneyObjectsList.Count - 1];
+        itemToRemove.transform.DOJump(purchasableArea.transform.position, 1.5f, 1, 0.5f).OnComplete(
+            () =>
+            {
+                itemToRemove.transform.SetParent(purchasableArea.transform, true);
+                itemToRemove.transform.localPosition = new Vector3(0f, -10f, 0f);
+                itemToRemove.transform.localRotation = Quaternion.identity;
+                NumOfItemsHolding--;
+                moneyObjectsList.Remove(itemToRemove);
+                Destroy(itemToRemove, 0.2f);
             }
         );
     }
