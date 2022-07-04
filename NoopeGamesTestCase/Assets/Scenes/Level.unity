@@ -707,7 +707,7 @@ GameObject:
   - component: {fileID: 762004179}
   m_Layer: 0
   m_Name: MoneySpawner
-  m_TagString: Untagged
+  m_TagString: ProductionArea
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -740,13 +740,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a9bb26e922e15fd4086ae7d856cd1113, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timeBetweenProduction: 1
   moneyObject: {fileID: 4597189562750680711, guid: fce6d74d61165c641884806021a118d6, type: 3}
   firstMoneyPosX: -3.85
   firstMoneyPosY: -0.15
   firstMoneyPosZ: -4
   distanceBetweenMoneyObjsX: 0.92
   distanceBetweenMoneyObjsZ: 1.25
+  timeBetweenProduction: 1
+  pauseProduction: 0
 --- !u!114 &762004180
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1630,7 +1631,7 @@ GameObject:
   - component: {fileID: 1379996475}
   m_Layer: 0
   m_Name: Plane
-  m_TagString: Untagged
+  m_TagString: ProductionArea
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1741,13 +1742,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a9bb26e922e15fd4086ae7d856cd1113, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timeBetweenProduction: 1
   moneyObject: {fileID: 4597189562750680711, guid: fce6d74d61165c641884806021a118d6, type: 3}
   firstMoneyPosX: -4
   firstMoneyPosY: -0.15
   firstMoneyPosZ: -4
   distanceBetweenMoneyObjsX: 0.92
   distanceBetweenMoneyObjsZ: 1.25
+  timeBetweenProduction: 1
+  pauseProduction: 0
 --- !u!1 &1467031551
 GameObject:
   m_ObjectHideFlags: 0

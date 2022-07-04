@@ -10,13 +10,10 @@ public class MoneyCollector : MonoBehaviour
     public int NumOfItemsHolding = 0;
     public int MaxNumOfItemsHolding = 5;
     private float distanceBetweenMoneyObjectsOnHolder = -0.015f;
+    private bool gettingMoney = false;
+    [SerializeField]
+    private float moneyGettingTime = 2f;
     public List<GameObject> moneyObjectsList = new List<GameObject>();
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
 
     public void AddNewItem(GameObject itemToAdd)
     {
@@ -45,5 +42,41 @@ public class MoneyCollector : MonoBehaviour
                 Destroy(itemToRemove, 0.2f);
             }
         );
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("ProductionArea"))
+        {
+            gettingMoney = true;
+            other.GetComponent<MoneyProduction>().pauseProduction = true;
+            GameObject otherGameObject = other.gameObject;
+            StartCoroutine(getMoney(otherGameObject));
+        }
+    }
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.CompareTag("ProductionArea"))
+        {
+            gettingMoney = false;
+            other.GetComponent<MoneyProduction>().pauseProduction = false;
+            other.GetComponent<MoneyProduction>().IsAreaFull();
+        }
+    }
+
+    private IEnumerator getMoney(GameObject otherGameObject)
+    {
+        yield return new WaitForSeconds(moneyGettingTime);
+        List<GameObject> gameObjects = otherGameObject.GetComponent<MoneyProduction>().moneyObjectsList;
+        GameObject gameObject = gameObjects[gameObjects.Count - 1];
+        otherGameObject.GetComponent<MoneyProduction>().moneyObjectsList.Remove(gameObject);
+        AddNewItem(gameObject);
+        if (gettingMoney)
+        {
+            if (otherGameObject.GetComponent<MoneyProduction>().moneyObjectsList.Count != 0)
+            {
+                StartCoroutine(getMoney(otherGameObject));
+            }
+        }
     }
 }
