@@ -16,9 +16,19 @@ public class MoneyControl : MonoBehaviour
 
     private void Start()
     {
-        keepNeeded = neededMoneyNumber;
-        moneyText = this.gameObject.GetComponentInChildren<TextMeshPro>();
-        moneyText.text = keepNeeded - neededMoneyNumber + "/" + keepNeeded;
+        if (neededMoneyNumber == 0)
+        {
+            this.gameObject.GetComponent<MoneyProduction>().AreaIsPurchased();
+            moneyText = this.gameObject.GetComponentInChildren<TextMeshPro>();
+            moneyText.enabled = false;
+            this.gameObject.GetComponent<MoneyControl>().enabled = false;
+        }
+        else
+        {
+            keepNeeded = neededMoneyNumber;
+            moneyText = this.gameObject.GetComponentInChildren<TextMeshPro>();
+            moneyText.text = keepNeeded - neededMoneyNumber + "/" + keepNeeded;
+        }
     }
 
     private void OnTriggerEnter(Collider other)
@@ -59,7 +69,7 @@ public class MoneyControl : MonoBehaviour
                 {
                     this.gameObject.GetComponent<MoneyProduction>().AreaIsPurchased();
                     moneyText.enabled = false;
-                    this.gameObject.GetComponent<MoneyCollector>().enabled = false;
+                    this.gameObject.GetComponent<MoneyControl>().enabled = false;
                 }
             }
         }
