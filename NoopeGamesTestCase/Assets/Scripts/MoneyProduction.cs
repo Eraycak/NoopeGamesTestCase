@@ -8,14 +8,36 @@ public class MoneyProduction : MonoBehaviour
     [SerializeField]
     private GameObject moneyObject;
     private GameObject createdObject;
-    public List<GameObject> moneyObjectsList = new List<GameObject>();
+    private List<GameObject> moneyObjectsList = new List<GameObject>();
+    public List<GameObject> MoneyObjectsList
+    {
+        get
+        {
+            return moneyObjectsList;
+        }
+        set
+        {
+            moneyObjectsList = value;
+        }
+    }
     [SerializeField]
     private float firstMoneyPosX = -4f, firstMoneyPosY = -0.15f, firstMoneyPosZ = -4f, distanceBetweenMoneyObjsX = 0.92f, distanceBetweenMoneyObjsY = 0.33f, distanceBetweenMoneyObjsZ = 1.25f;
     [SerializeField]
     private float timeBetweenProduction = 2f;
     [SerializeField]
     private int productionAreaLengthX = 10, productionAreaLengthZ = 7, productionAreaHeight = 5;
-    public bool pauseProduction = false;
+    private bool pauseProduction = false;
+    public bool PauseProduction
+    {
+        get
+        {
+            return pauseProduction;
+        }
+        set
+        {
+            pauseProduction = value;
+        }
+    }
     private bool areaIsPurchased = false;
 
     public void AreaIsPurchased()
@@ -30,6 +52,7 @@ public class MoneyProduction : MonoBehaviour
             int i = moneyObjectsList.Count % 10;
             int j = moneyObjectsList.Count / 10;
             int k = moneyObjectsList.Count / (productionAreaLengthX * productionAreaLengthZ);
+            Debug.LogError("k " + k);
             StartCoroutine(produceMoney(i, j, k));
         }
     }

@@ -5,27 +5,49 @@ using DG.Tweening;
 
 public class MoneyCollector : MonoBehaviour
 {
-    [Header("Ref")]
-    public Transform ItemHolderTransform;
-    public int NumOfItemsHolding = 0;
-    public int MaxNumOfItemsHolding = 5;
+    [SerializeField]
+    private Transform ItemHolderTransform;
+    [SerializeField]
+    private int numOfItemsHolding = 0, maxNumOfItemsHolding = 5;
+    public int NumOfItemsHolding
+    {
+        get
+        {
+            return numOfItemsHolding;
+        }
+        set
+        {
+            numOfItemsHolding = value;
+        }
+    }
+    public int MaxNumOfItemsHolding
+    {
+        get
+        {
+            return maxNumOfItemsHolding;
+        }
+        set
+        {
+            maxNumOfItemsHolding = value;
+        }
+    }
     private float distanceBetweenMoneyObjectsOnHolder = -0.015f;
     private bool gettingMoney = false;
     private bool removed = false;
     [SerializeField]
     private float moneyGettingTime = 2f;
-    public List<GameObject> moneyObjectsList = new List<GameObject>();
+    private List<GameObject> moneyObjectsList = new List<GameObject>();
 
     public void AddNewItem(GameObject itemToAdd)
     {
         moneyObjectsList.Add(itemToAdd);
-        itemToAdd.transform.DOJump(ItemHolderTransform.position + new Vector3(distanceBetweenMoneyObjectsOnHolder * NumOfItemsHolding, 0, 0), 1.5f, 1, 0.5f).OnComplete(
+        itemToAdd.transform.DOJump(ItemHolderTransform.position + new Vector3(distanceBetweenMoneyObjectsOnHolder * numOfItemsHolding, 0, 0), 1.5f, 1, 0.5f).OnComplete(
             () =>
             {
                 itemToAdd.transform.SetParent(ItemHolderTransform, true);
-                itemToAdd.transform.localPosition = new Vector3(distanceBetweenMoneyObjectsOnHolder * NumOfItemsHolding, 0, -0.0125f);
+                itemToAdd.transform.localPosition = new Vector3(distanceBetweenMoneyObjectsOnHolder * numOfItemsHolding, 0, -0.0125f);
                 itemToAdd.transform.localRotation = Quaternion.Euler(180f, 90f, 90f);
-                NumOfItemsHolding++;
+                numOfItemsHolding++;
             }
         );
     }
@@ -38,7 +60,7 @@ public class MoneyCollector : MonoBehaviour
                 itemToRemove.transform.SetParent(purchasableArea.transform, true);
                 itemToRemove.transform.localPosition = new Vector3(0f, -10f, 0f);
                 itemToRemove.transform.localRotation = Quaternion.identity;
-                NumOfItemsHolding--;
+                numOfItemsHolding--;
                 moneyObjectsList.Remove(itemToRemove);
                 Destroy(itemToRemove, 0.2f);
             }
@@ -50,7 +72,7 @@ public class MoneyCollector : MonoBehaviour
         if (other.CompareTag("ProductionArea"))
         {
             gettingMoney = true;
-            other.GetComponent<MoneyProduction>().pauseProduction = true;
+            other.GetComponent<MoneyProduction>().PauseProduction = true;
             GameObject otherGameObject = other.gameObject;
             StartCoroutine(getMoney(otherGameObject));
         }
@@ -60,7 +82,7 @@ public class MoneyCollector : MonoBehaviour
         if (other.CompareTag("ProductionArea"))
         {
             gettingMoney = false;
-            other.GetComponent<MoneyProduction>().pauseProduction = false;
+            other.GetComponent<MoneyProduction>().PauseProduction = false;
             StartCoroutine(Wait(other));
         }
     }
@@ -73,14 +95,15 @@ public class MoneyCollector : MonoBehaviour
     private IEnumerator getMoney(GameObject otherGameObject)
     {
         yield return new WaitForSeconds(moneyGettingTime);
-        if (NumOfItemsHolding < MaxNumOfItemsHolding && gettingMoney)
+        if (numOfItemsHolding < maxNumOfItemsHolding && gettingMoney)
         {
-            if (otherGameObject.GetComponent<MoneyProduction>().moneyObjectsList.Count != 0)
+            if (otherGameObject.GetComponent<MoneyProduction>().MoneyObjectsList.Count != 0)
             {
                 removed = false;
-                List<GameObject> gameObjectsList = otherGameObject.GetComponent<MoneyProduction>().moneyObjectsList;
+                List<GameObject> gameObjectsList = otherGameObject.GetComponent<MoneyProduction>().MoneyObjectsList;
                 GameObject gameObject = gameObjectsList[gameObjectsList.Count - 1];
-                otherGameObject.GetComponent<MoneyProduction>().moneyObjectsList.RemoveAt(gameObjectsList.Count - 1);
+                gameObjectsList.RemoveAt(gameObjectsList.Count - 1);
+                otherGameObject.GetComponent<MoneyProduction>().MoneyObjectsList = gameObjectsList;
                 removed = true;
                 AddNewItem(gameObject);
                 StartCoroutine(getMoney(otherGameObject));
