@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 4597189562750680710}
   - component: {fileID: 4180659144469763823}
   - component: {fileID: 8803849768367199070}
-  - component: {fileID: 4449565530293725672}
   m_Layer: 8
   m_Name: Money_Collect (1)
   m_TagString: Item
@@ -64,18 +63,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &4449565530293725672
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4597189562750680711}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 36f3754d02862804787ba2012e2630df, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &4597189562466726518
 PrefabInstance:
   m_ObjectHideFlags: 0

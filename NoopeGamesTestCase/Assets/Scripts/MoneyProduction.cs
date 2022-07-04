@@ -1,4 +1,4 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
@@ -27,6 +27,7 @@ public class MoneyProduction : MonoBehaviour
     {
         if (moneyObjectsList.Count < 70 && areaIsPurchased)
         {
+            //Debug.LogError("isarefull " + moneyObjectsList.Count);
             int i = moneyObjectsList.Count % 10;
             int j = moneyObjectsList.Count / 10;
             StartCoroutine(produceMoney(i, j));
@@ -34,7 +35,6 @@ public class MoneyProduction : MonoBehaviour
     }
     private IEnumerator produceMoney(int i, int j)
     {
-        yield return new WaitForSeconds(timeBetweenProduction);
         if (!pauseProduction)
         {
             Vector3 location = new Vector3(firstMoneyPosX + (distanceBetweenMoneyObjsX * i), firstMoneyPosY, firstMoneyPosZ + (distanceBetweenMoneyObjsZ * j));
@@ -52,10 +52,16 @@ public class MoneyProduction : MonoBehaviour
             createdObject.GetComponent<SphereCollider>().isTrigger = false;
             createdObject.transform.DOLocalJump(location, 1.5f, 1, 0.5f);
             moneyObjectsList.Add(createdObject);
+            //Debug.LogError("coro " + moneyObjectsList.Count);
             if (j < productionAreaLengthZ)
             {
+                yield return new WaitForSeconds(timeBetweenProduction);
                 StartCoroutine(produceMoney(i, j));
             }
+        }
+        else
+        {
+            yield return new WaitForSeconds(0f);
         }
     }
 }

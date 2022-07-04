@@ -11,6 +11,7 @@ public class MoneyCollector : MonoBehaviour
     public int MaxNumOfItemsHolding = 5;
     private float distanceBetweenMoneyObjectsOnHolder = -0.015f;
     private bool gettingMoney = false;
+    private bool removed = false;
     [SerializeField]
     private float moneyGettingTime = 2f;
     public List<GameObject> moneyObjectsList = new List<GameObject>();
@@ -60,8 +61,13 @@ public class MoneyCollector : MonoBehaviour
         {
             gettingMoney = false;
             other.GetComponent<MoneyProduction>().pauseProduction = false;
-            other.GetComponent<MoneyProduction>().IsAreaFull();
+            StartCoroutine(Wait(other));
         }
+    }
+    private IEnumerator Wait(Collider collider)
+    {
+        yield return new WaitUntil(() => removed == true);
+        collider.GetComponent<MoneyProduction>().IsAreaFull();
     }
 
     private IEnumerator getMoney(GameObject otherGameObject)
@@ -71,9 +77,11 @@ public class MoneyCollector : MonoBehaviour
         {
             if (otherGameObject.GetComponent<MoneyProduction>().moneyObjectsList.Count != 0)
             {
+                removed = false;
                 List<GameObject> gameObjectsList = otherGameObject.GetComponent<MoneyProduction>().moneyObjectsList;
                 GameObject gameObject = gameObjectsList[gameObjectsList.Count - 1];
-                otherGameObject.GetComponent<MoneyProduction>().moneyObjectsList.Remove(gameObject);
+                otherGameObject.GetComponent<MoneyProduction>().moneyObjectsList.RemoveAt(gameObjectsList.Count - 1);
+                removed = true;
                 AddNewItem(gameObject);
                 StartCoroutine(getMoney(otherGameObject));
             }
