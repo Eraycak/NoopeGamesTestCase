@@ -13,6 +13,8 @@ public class MoneyProduction : MonoBehaviour
     private float firstMoneyPosX = -4f, firstMoneyPosY = -0.15f, firstMoneyPosZ = -4f, distanceBetweenMoneyObjsX = 0.92f, distanceBetweenMoneyObjsZ = 1.25f;
     [SerializeField]
     private float timeBetweenProduction = 2f;
+    [SerializeField]
+    private int productionAreaLengthX = 10, productionAreaLengthZ = 7;
     public bool pauseProduction = false;
     private bool areaIsPurchased = false;
 
@@ -38,7 +40,7 @@ public class MoneyProduction : MonoBehaviour
             Vector3 location = new Vector3(firstMoneyPosX + (distanceBetweenMoneyObjsX * i), firstMoneyPosY, firstMoneyPosZ + (distanceBetweenMoneyObjsZ * j));
             Vector3 buildingLocation = transform.parent.position;
             i++;
-            if (i == 10)
+            if (i == productionAreaLengthX)
             {
                 j++;
                 i = 0;
@@ -50,7 +52,7 @@ public class MoneyProduction : MonoBehaviour
             createdObject.GetComponent<SphereCollider>().isTrigger = false;
             createdObject.transform.DOLocalJump(location, 1.5f, 1, 0.5f);
             moneyObjectsList.Add(createdObject);
-            if (j < 7)
+            if (j < productionAreaLengthZ)
             {
                 StartCoroutine(produceMoney(i, j));
             }
