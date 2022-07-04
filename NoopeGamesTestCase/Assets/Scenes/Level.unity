@@ -741,6 +741,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moneyObject: {fileID: 4597189562750680711, guid: fce6d74d61165c641884806021a118d6, type: 3}
+  moneyObjectsList: []
   firstMoneyPosX: -3.85
   firstMoneyPosY: -0.15
   firstMoneyPosZ: -4
@@ -968,6 +969,10 @@ PrefabInstance:
     - target: {fileID: 4274868087642060, guid: 16e7451e81164bc4caac73768f16ceb6, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 54704068080705314, guid: 16e7451e81164bc4caac73768f16ceb6, type: 3}
+      propertyPath: m_Constraints
+      value: 126
       objectReference: {fileID: 0}
     - target: {fileID: 1221030649215221295, guid: 16e7451e81164bc4caac73768f16ceb6, type: 3}
       propertyPath: floatingJoystick
@@ -1743,6 +1748,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moneyObject: {fileID: 4597189562750680711, guid: fce6d74d61165c641884806021a118d6, type: 3}
+  moneyObjectsList: []
   firstMoneyPosX: -4
   firstMoneyPosY: -0.15
   firstMoneyPosZ: -4

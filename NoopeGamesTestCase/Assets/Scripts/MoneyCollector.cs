@@ -67,15 +67,19 @@ public class MoneyCollector : MonoBehaviour
     private IEnumerator getMoney(GameObject otherGameObject)
     {
         yield return new WaitForSeconds(moneyGettingTime);
-        List<GameObject> gameObjects = otherGameObject.GetComponent<MoneyProduction>().moneyObjectsList;
-        GameObject gameObject = gameObjects[gameObjects.Count - 1];
-        otherGameObject.GetComponent<MoneyProduction>().moneyObjectsList.Remove(gameObject);
-        AddNewItem(gameObject);
-        if (gettingMoney)
+        if (NumOfItemsHolding < MaxNumOfItemsHolding && gettingMoney)
         {
             if (otherGameObject.GetComponent<MoneyProduction>().moneyObjectsList.Count != 0)
             {
+                List<GameObject> gameObjectsList = otherGameObject.GetComponent<MoneyProduction>().moneyObjectsList;
+                GameObject gameObject = gameObjectsList[gameObjectsList.Count - 1];
+                otherGameObject.GetComponent<MoneyProduction>().moneyObjectsList.Remove(gameObject);
+                AddNewItem(gameObject);
                 StartCoroutine(getMoney(otherGameObject));
+            }
+            else
+            {
+                gettingMoney = false;
             }
         }
     }

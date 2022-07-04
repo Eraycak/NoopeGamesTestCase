@@ -1479,3 +1479,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ItemHolderTransform: {fileID: 521639315}
+  NumOfItemsHolding: 0
+  MaxNumOfItemsHolding: 5
+  moneyGettingTime: 1
+  moneyObjectsList: []

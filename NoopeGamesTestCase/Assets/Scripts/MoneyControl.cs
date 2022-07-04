@@ -20,8 +20,8 @@ public class MoneyControl : MonoBehaviour
         {
             this.gameObject.GetComponent<MoneyProduction>().AreaIsPurchased();
             moneyText = this.gameObject.GetComponentInChildren<TextMeshPro>();
-            moneyText.enabled = false;
-            this.gameObject.GetComponent<MoneyControl>().enabled = false;
+            Destroy(moneyText);
+            Destroy(this);
         }
         else
         {
@@ -68,8 +68,8 @@ public class MoneyControl : MonoBehaviour
                 if (neededMoneyNumber == 0)
                 {
                     this.gameObject.GetComponent<MoneyProduction>().AreaIsPurchased();
-                    moneyText.enabled = false;
-                    this.gameObject.GetComponent<MoneyControl>().enabled = false;
+                    Destroy(moneyText);
+                    Destroy(this);
                 }
             }
         }

@@ -16,7 +16,7 @@ public class ItemControl : MonoBehaviour
             MoneyCollector moneyCollector;
             if (other.TryGetComponent(out moneyCollector))
             {
-                if (moneyCollector.NumOfItemsHolding <= moneyCollector.MaxNumOfItemsHolding)
+                if (moneyCollector.NumOfItemsHolding < moneyCollector.MaxNumOfItemsHolding)
                 {
                     moneyCollector.AddNewItem(this.gameObject);
                     isAlreadyCollected = true;
