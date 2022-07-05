@@ -5,6 +5,7 @@ using DG.Tweening;
 
 public class MoneyProduction : MonoBehaviour
 {
+
     [SerializeField]
     private GameObject moneyObject;
     private GameObject createdObject;
@@ -45,17 +46,18 @@ public class MoneyProduction : MonoBehaviour
         areaIsPurchased = true;
         StartCoroutine(produceMoney(0, 0, 0));
     }
+
     public void IsAreaFull()
     {
-        if (moneyObjectsList.Count < 70 && areaIsPurchased)
+        if (moneyObjectsList.Count < (70 * productionAreaHeight) && areaIsPurchased)
         {
-            int i = moneyObjectsList.Count % 10;
-            int j = moneyObjectsList.Count / 10;
             int k = moneyObjectsList.Count / (productionAreaLengthX * productionAreaLengthZ);
-            Debug.LogError("k " + k);
+            int i = (moneyObjectsList.Count - (70 * k)) % 10;
+            int j = (moneyObjectsList.Count - (70 * k)) / 10;
             StartCoroutine(produceMoney(i, j, k));
         }
     }
+
     private IEnumerator produceMoney(int i, int j, int k)
     {
         if (!pauseProduction)
@@ -80,7 +82,7 @@ public class MoneyProduction : MonoBehaviour
                 j = 0;
                 k++;
             }
-            if (k<=productionAreaHeight)
+            if (k<productionAreaHeight)
             {
                 yield return new WaitForSeconds(timeBetweenProduction);
                 StartCoroutine(produceMoney(i, j, k));
@@ -91,4 +93,5 @@ public class MoneyProduction : MonoBehaviour
             yield return new WaitForSeconds(0f);
         }
     }
+
 }

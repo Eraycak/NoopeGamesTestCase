@@ -5,6 +5,7 @@ using DG.Tweening;
 
 public class MoneyCollector : MonoBehaviour
 {
+
     [SerializeField]
     private Transform ItemHolderTransform;
     [SerializeField]
@@ -18,17 +19,6 @@ public class MoneyCollector : MonoBehaviour
         set
         {
             numOfItemsHolding = value;
-        }
-    }
-    public int MaxNumOfItemsHolding
-    {
-        get
-        {
-            return maxNumOfItemsHolding;
-        }
-        set
-        {
-            maxNumOfItemsHolding = value;
         }
     }
     private float distanceBetweenMoneyObjectsOnHolder = -0.015f;
@@ -51,6 +41,7 @@ public class MoneyCollector : MonoBehaviour
             }
         );
     }
+
     public void RemoveItem(GameObject purchasableArea)
     {
         GameObject itemToRemove = moneyObjectsList[moneyObjectsList.Count - 1];
@@ -77,6 +68,7 @@ public class MoneyCollector : MonoBehaviour
             StartCoroutine(getMoney(otherGameObject));
         }
     }
+
     private void OnTriggerExit(Collider other)
     {
         if (other.CompareTag("ProductionArea"))
@@ -86,6 +78,7 @@ public class MoneyCollector : MonoBehaviour
             StartCoroutine(Wait(other));
         }
     }
+
     private IEnumerator Wait(Collider collider)
     {
         yield return new WaitUntil(() => removed == true);
@@ -114,4 +107,5 @@ public class MoneyCollector : MonoBehaviour
             }
         }
     }
+
 }

@@ -5,6 +5,7 @@ using TMPro;
 
 public class MoneyControl : MonoBehaviour
 {
+
     [SerializeField]
     private int neededMoneyNumber = 100;
     private int keepNeeded;
@@ -74,4 +75,5 @@ public class MoneyControl : MonoBehaviour
             }
         }
     }
+
 }

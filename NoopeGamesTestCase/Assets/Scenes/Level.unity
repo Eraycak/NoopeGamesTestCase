@@ -363,16 +363,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moneyObject: {fileID: 4597189562750680711, guid: fce6d74d61165c641884806021a118d6, type: 3}
-  moneyObjectsList: []
   firstMoneyPosX: -9.3
   firstMoneyPosY: -0.15
   firstMoneyPosZ: -10.2
   distanceBetweenMoneyObjsX: 0.92
+  distanceBetweenMoneyObjsY: 0.33
   distanceBetweenMoneyObjsZ: 1.25
   timeBetweenProduction: 0.5
   productionAreaLengthX: 21
   productionAreaLengthZ: 16
-  pauseProduction: 0
+  productionAreaHeight: 5
 --- !u!114 &424407966
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -671,16 +671,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moneyObject: {fileID: 4597189562750680711, guid: fce6d74d61165c641884806021a118d6, type: 3}
-  moneyObjectsList: []
   firstMoneyPosX: -4
   firstMoneyPosY: -0.15
   firstMoneyPosZ: -4
   distanceBetweenMoneyObjsX: 0.92
+  distanceBetweenMoneyObjsY: 0.33
   distanceBetweenMoneyObjsZ: 1.25
   timeBetweenProduction: 2
   productionAreaLengthX: 10
   productionAreaLengthZ: 7
-  pauseProduction: 0
+  productionAreaHeight: 5
 --- !u!114 &459015749
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1423,16 +1423,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moneyObject: {fileID: 4597189562750680711, guid: fce6d74d61165c641884806021a118d6, type: 3}
-  moneyObjectsList: []
   firstMoneyPosX: -3.85
   firstMoneyPosY: -0.15
   firstMoneyPosZ: -4
   distanceBetweenMoneyObjsX: 0.92
+  distanceBetweenMoneyObjsY: 0.33
   distanceBetweenMoneyObjsZ: 1.25
   timeBetweenProduction: 2
   productionAreaLengthX: 10
   productionAreaLengthZ: 7
-  pauseProduction: 0
+  productionAreaHeight: 5
 --- !u!114 &762004180
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2417,16 +2417,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moneyObject: {fileID: 4597189562750680711, guid: fce6d74d61165c641884806021a118d6, type: 3}
-  moneyObjectsList: []
   firstMoneyPosX: -4
   firstMoneyPosY: -0.15
   firstMoneyPosZ: -4
   distanceBetweenMoneyObjsX: 0.92
+  distanceBetweenMoneyObjsY: 0.33
   distanceBetweenMoneyObjsZ: 1.25
   timeBetweenProduction: 1
   productionAreaLengthX: 10
   productionAreaLengthZ: 7
-  pauseProduction: 0
+  productionAreaHeight: 5
 --- !u!114 &1239773656
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2555,16 +2555,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moneyObject: {fileID: 4597189562750680711, guid: fce6d74d61165c641884806021a118d6, type: 3}
-  moneyObjectsList: []
   firstMoneyPosX: -4
   firstMoneyPosY: -0.15
   firstMoneyPosZ: -4
   distanceBetweenMoneyObjsX: 0.92
+  distanceBetweenMoneyObjsY: 0.33
   distanceBetweenMoneyObjsZ: 1.25
   timeBetweenProduction: 1
   productionAreaLengthX: 10
   productionAreaLengthZ: 7
-  pauseProduction: 0
+  productionAreaHeight: 5
 --- !u!114 &1301941949
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2908,16 +2908,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moneyObject: {fileID: 4597189562750680711, guid: fce6d74d61165c641884806021a118d6, type: 3}
-  moneyObjectsList: []
   firstMoneyPosX: -4
   firstMoneyPosY: -0.15
   firstMoneyPosZ: -4
   distanceBetweenMoneyObjsX: 0.92
+  distanceBetweenMoneyObjsY: 0.33
   distanceBetweenMoneyObjsZ: 1.25
   timeBetweenProduction: 1.5
   productionAreaLengthX: 10
   productionAreaLengthZ: 7
-  pauseProduction: 0
+  productionAreaHeight: 5
 --- !u!1 &1446211515
 GameObject:
   m_ObjectHideFlags: 0
