@@ -1461,7 +1461,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   floatingJoystick: {fileID: 0}
-  m_moveSpeed: 4
+  m_moveSpeed: 8
   m_turnSpeed: 200
   m_animator: {fileID: 95541723052833158}
   m_rigidBody: {fileID: 54704068080705314}
@@ -1479,7 +1479,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ItemHolderTransform: {fileID: 521639315}
-  NumOfItemsHolding: 0
-  MaxNumOfItemsHolding: 5
+  numOfItemsHolding: 0
+  maxNumOfItemsHolding: 5
   moneyGettingTime: 1
-  moneyObjectsList: []
