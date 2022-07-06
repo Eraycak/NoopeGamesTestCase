@@ -1480,5 +1480,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ItemHolderTransform: {fileID: 521639315}
   numOfItemsHolding: 0
-  maxNumOfItemsHolding: 5
+  maxNumOfItemsHolding: 10
   moneyGettingTime: 1
